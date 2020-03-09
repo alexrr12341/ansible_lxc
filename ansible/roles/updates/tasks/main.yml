@@ -1,0 +1,2 @@
+- name: Updatear y upgradear máquinas
+  apt: update_cache=yes upgrade=yes

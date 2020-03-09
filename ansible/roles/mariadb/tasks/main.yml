@@ -1,0 +1,24 @@
+- name: Instalacion de mariadb y configuracion de mariadb
+  apt:
+    pkg:
+      - mariadb-server
+      - python-mysqldb
+- name: Creacion de la base de datos
+  mysql_db: name={{ mariadb_wordpress }}
+
+- name: Creacion del usuario en la base de datos
+  mysql_user:
+    name: "{{ mariadb_usuario }}"
+    password: "{{ mariadb_pass }}"
+    priv: "{{ mariadb_wordpress }}.*:ALL"
+    host: '%'
+- name: Pasar configuracion remota
+  template: >-
+    src=etc/mysql/mariadb.conf.d/50-server.cnf
+    dest=/etc/mysql/mariadb.conf.d/50-server.cnf
+    owner=root
+    group=root
+    mode=644
+  notify:
+    restart mariadb
+

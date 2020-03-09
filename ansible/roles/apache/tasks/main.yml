@@ -1,0 +1,9 @@
+- name: Instalacion de apache y php
+  apt:
+    pkg:
+    - apache2
+    - php
+    - php-mysql
+    - libapache2-mod-php
+  notify:
+    restart apache2

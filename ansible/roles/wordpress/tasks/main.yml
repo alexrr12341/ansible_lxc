@@ -1,0 +1,13 @@
+- name: Instalacion de zip
+  apt:
+    name: unzip
+
+- name: Descargar wordpress
+  get_url: url=https://wordpress.org/latest.zip dest=/tmp/latest.zip mode=640
+
+- name: Poner wordpress en var
+  unarchive: src=/tmp/latest.zip dest=/var/www/html copy=no owner=www-data group=www-data mode=744
+
+- name: Poner credenciales de bbdd
+  template: src=templates/wp-config.php dest=/var/www/html/wordpress/wp-config.php owner=www-data group=www-data mode=744
+  notify: restart apache2

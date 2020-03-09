@@ -1,0 +1,16 @@
+- hosts: all
+  become: true
+  roles:
+   - role: updates
+
+- hosts: wordpress
+  become: true
+  roles:
+   - role: apache
+   - role: wordpress
+
+- hosts: mariadb
+  become: true
+  roles:
+   - role: mariadb
+
