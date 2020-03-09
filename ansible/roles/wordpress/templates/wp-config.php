@@ -25,7 +25,7 @@ define('DB_USER', '{{ mariadb_usuario }}');
 define('DB_PASSWORD', '{{ mariadb_pass }}');
 
 /** MySQL hostname */
-define('DB_HOST', '{{ hostvars['mariadb']['ansible_eth1']['ipv4']['address'] }}');
+define('DB_HOST', '192.168.122.2');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8mb4');
